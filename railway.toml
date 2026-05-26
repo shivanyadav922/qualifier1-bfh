@@ -1,6 +1,5 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "./mvnw clean package -DskipTests"
 
 [deploy]
 startCommand = "java -jar target/qualifier-1.0.0.jar"
