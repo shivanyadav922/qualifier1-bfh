@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * REST controller exposing the /bfhl endpoint as required by the contest.
  */
@@ -35,11 +37,23 @@ public class BfhlController {
     }
 
     /**
-     * GET /health
-     * Simple liveness probe for Railway / Render health checks.
+     * GET /bfhl
+     * Friendly response for browser access instead of 405.
+     */
+    @GetMapping
+    public ResponseEntity<Map<String, String>> info() {
+        return ResponseEntity.ok(Map.of(
+            "message", "POST /bfhl is the correct endpoint. Use POST with JSON body: {\"data\": [...]}",
+            "health", "/bfhl/health"
+        ));
+    }
+
+    /**
+     * GET /bfhl/health
+     * Liveness probe for Railway health checks. Returns JSON {"status":"ok"}.
      */
     @GetMapping("/health")
-    public ResponseEntity<String> health() {
-        return ResponseEntity.ok("OK");
+    public ResponseEntity<Map<String, String>> health() {
+        return ResponseEntity.ok(Map.of("status", "ok"));
     }
 }
