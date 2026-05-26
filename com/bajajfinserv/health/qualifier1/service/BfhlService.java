@@ -121,12 +121,12 @@ public class BfhlService implements BfhlServiceInterface {
     /**
      * Builds user_id in format: fullname_ddmmyyyy (lowercase, spaces replaced with _).
      * DOB is extracted from regNo: last 8 digits = ddmmyyyy.
-     * Format: tarun_asharma_ddmmyyyy
+     * Format: shivan_singh_yadav_ddmmyyyy
      */
     private String buildUserId() {
-        // name: "Tarun Asharma" -> "tarun_asharma"
+        // name: "Shivan Singh Yadav" -> "shivan_singh_yadav"
         String namePart = studentName.trim().toLowerCase().replace(" ", "_");
-        // regNo: "0827AL231133" — no DOB embedded, use regNo as-is for uniqueness
+        // regNo: "0827AL231121" — no DOB embedded, use regNo as-is for uniqueness
         // Per contest spec: user_id = {full_name_ddmmyyyy}
         // We use regNo as the date suffix since no DOB is provided separately
         return namePart + "_" + studentRegNo.toLowerCase();
